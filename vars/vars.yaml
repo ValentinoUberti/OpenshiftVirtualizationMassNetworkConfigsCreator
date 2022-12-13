@@ -1,5 +1,5 @@
 ---
-  virtual_machines_namespaces: test-vm
+  virtual_machines_namespaces: vm-test
   interfaces:
     - name: ovirtmgmt
       vlan_id: 25
@@ -12,10 +12,6 @@
     - name: vlan22
       vlan_id: 22
       description: Openshift Privata
-      base_iface: enp5s0f0
-    - name: vlan22Test
-      vlan_id: 1
-      description: ""
       base_iface: enp5s0f0
     - name: vlan23
       vlan_id: 23

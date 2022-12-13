@@ -1,0 +1,11 @@
+---
+  - name: Simple NNCP and NAD generator
+    hosts: localhost
+    connection: local
+    gather_facts: no
+    vars_files:
+      - vars.yaml
+    tasks:
+      - name: Create the Jinja2 based template
+        template: src=./template/nncp-bridge-filtering.j2 dest=./output.yaml
+    

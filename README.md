@@ -6,5 +6,6 @@ Based on guidelines written by Fulvio Carrus (Red Hat)(Thanks!)
 
 ## Steps:
 - populate the .vars/vars.yaml with the vlans/bridges configuration to be created
-- run ansible-playbook main.yaml
+- run ansible-playbook no_vlan_bridge_filtering.yaml or no_vlan_bridge_filtering.yaml
+  - https://access.redhat.com/articles/6972285
 - oc apply -f output.yaml

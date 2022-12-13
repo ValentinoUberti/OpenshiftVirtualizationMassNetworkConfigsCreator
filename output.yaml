@@ -4,340 +4,138 @@ metadata:
  name: vm-network-bridges
 spec:
  desiredState:
-   interfaces: 
-     - type: vlan
-       description: Management Network
-       name: ovirtmgmt
-       state: up
-       vlan:
-         base-iface: enp5s0f0
-         id: 25
-     - type: linux-bridge
-       name: br25
-       state: up
-       description: Linux bridge with enp5s0f0.25 as a port
-       bridge:
-         options:
-           stp:
-             enabled: false
-         port:
-           - name: "enp5s0f0.25" 
-     - type: vlan
-       description: Pubblica
-       name: vlan19
-       state: up
-       vlan:
-         base-iface: enp5s0f0
-         id: 19
-     - type: linux-bridge
-       name: br19
-       state: up
-       description: Linux bridge with enp5s0f0.19 as a port
-       bridge:
-         options:
-           stp:
-             enabled: false
-         port:
-           - name: "enp5s0f0.19" 
-     - type: vlan
-       description: Openshift Privata
-       name: vlan22
-       state: up
-       vlan:
-         base-iface: enp5s0f0
-         id: 22
-     - type: linux-bridge
-       name: br22
-       state: up
-       description: Linux bridge with enp5s0f0.22 as a port
-       bridge:
-         options:
-           stp:
-             enabled: false
-         port:
-           - name: "enp5s0f0.22" 
-     - type: vlan
-       description: 
-       name: vlan22Test
-       state: up
-       vlan:
-         base-iface: enp5s0f0
-         id: 1
+   interfaces:
      - type: linux-bridge
        name: br1
        state: up
-       description: Linux bridge with enp5s0f0.1 as a port
+       ipv4:
+          enabled: false 
+       description: Linux bridge with enp5s0f0 as a port
        bridge:
          options:
            stp:
              enabled: false
          port:
-           - name: "enp5s0f0.1" 
-     - type: vlan
-       description: Openstack Privata
-       name: vlan23
-       state: up
-       vlan:
-         base-iface: enp5s0f0
-         id: 23
-     - type: linux-bridge
-       name: br23
-       state: up
-       description: Linux bridge with enp5s0f0.23 as a port
-       bridge:
-         options:
-           stp:
-             enabled: false
-         port:
-           - name: "enp5s0f0.23" 
-     - type: vlan
-       description: iscsi nelle VM and Ceph
-       name: vlan24
-       state: up
-       vlan:
-         base-iface: enp5s0f0
-         id: 24
-     - type: linux-bridge
-       name: br24
-       state: up
-       description: Linux bridge with enp5s0f0.24 as a port
-       bridge:
-         options:
-           stp:
-             enabled: false
-         port:
-           - name: "enp5s0f0.24" 
-     - type: vlan
-       description: OCP_HUB
-       name: vlan_1
-       state: up
-       vlan:
-         base-iface: enp5s0f0
-         id: 1
-     - type: linux-bridge
-       name: br1
-       state: up
-       description: Linux bridge with enp5s0f0.1 as a port
-       bridge:
-         options:
-           stp:
-             enabled: false
-         port:
-           - name: "enp5s0f0.1" 
-     - type: vlan
-       description: 
-       name: vlan_3
-       state: up
-       vlan:
-         base-iface: enp5s0f0
-         id: 3
-     - type: linux-bridge
-       name: br3
-       state: up
-       description: Linux bridge with enp5s0f0.3 as a port
-       bridge:
-         options:
-           stp:
-             enabled: false
-         port:
-           - name: "enp5s0f0.3" 
-     - type: vlan
-       description: 
-       name: vlan_6
-       state: up
-       vlan:
-         base-iface: enp5s0f0
-         id: 6
-     - type: linux-bridge
-       name: br6
-       state: up
-       description: Linux bridge with enp5s0f0.6 as a port
-       bridge:
-         options:
-           stp:
-             enabled: false
-         port:
-           - name: "enp5s0f0.6" 
-     - type: vlan
-       description: 
-       name: vlan_99
-       state: up
-       vlan:
-         base-iface: enp5s0f0
-         id: 99
-     - type: linux-bridge
-       name: br99
-       state: up
-       description: Linux bridge with enp5s0f0.99 as a port
-       bridge:
-         options:
-           stp:
-             enabled: false
-         port:
-           - name: "enp5s0f0.99" 
-     - type: vlan
-       description: 
-       name: vlan_100
-       state: up
-       vlan:
-         base-iface: enp5s0f0
-         id: 100
-     - type: linux-bridge
-       name: br100
-       state: up
-       description: Linux bridge with enp5s0f0.100 as a port
-       bridge:
-         options:
-           stp:
-             enabled: false
-         port:
-           - name: "enp5s0f0.100" 
-     - type: vlan
-       description: 
-       name: vlan_k8s_4
-       state: up
-       vlan:
-         base-iface: enp5s0f0
-         id: 4
-     - type: linux-bridge
-       name: br4
-       state: up
-       description: Linux bridge with enp5s0f0.4 as a port
-       bridge:
-         options:
-           stp:
-             enabled: false
-         port:
-           - name: "enp5s0f0.4"
----
-apiVersion: k8s.cni.cncf.io/v1
-kind: NetworkAttachmentDefinition
-metadata:
-  name: vlan25
-  namespace: test-vm
-spec:
-  config: >- 
-    {"name":"vlan25","type":"cnv-bridge","cniVersion":"0.3.1","bridge":"br25","macspoofchk":false,"ipam":{}}
-
+           - name: "enp5s0f0"
 
 ---
 apiVersion: k8s.cni.cncf.io/v1
 kind: NetworkAttachmentDefinition
 metadata:
-  name: vlan19
-  namespace: test-vm
+  name: bridge-network-25
+  namespace: vm-test
+  annotations:
+    k8s.v1.cni.cncf.io/resourceName: bridge.network.kubevirt.io/br1
 spec:
   config: >- 
-    {"name":"vlan19","type":"cnv-bridge","cniVersion":"0.3.1","bridge":"br19","macspoofchk":false,"ipam":{}}
-
-
+    {"name":"br1","type":"cnv-bridge","cniVersion":"0.3.1","bridge":"br1","macspoofchk": true,"vlan": 25}
 ---
 apiVersion: k8s.cni.cncf.io/v1
 kind: NetworkAttachmentDefinition
 metadata:
-  name: vlan22
-  namespace: test-vm
+  name: bridge-network-19
+  namespace: vm-test
+  annotations:
+    k8s.v1.cni.cncf.io/resourceName: bridge.network.kubevirt.io/br1
 spec:
   config: >- 
-    {"name":"vlan22","type":"cnv-bridge","cniVersion":"0.3.1","bridge":"br22","macspoofchk":false,"ipam":{}}
-
-
+    {"name":"br1","type":"cnv-bridge","cniVersion":"0.3.1","bridge":"br1","macspoofchk": true,"vlan": 19}
 ---
 apiVersion: k8s.cni.cncf.io/v1
 kind: NetworkAttachmentDefinition
 metadata:
-  name: vlan1
-  namespace: test-vm
+  name: bridge-network-22
+  namespace: vm-test
+  annotations:
+    k8s.v1.cni.cncf.io/resourceName: bridge.network.kubevirt.io/br1
 spec:
   config: >- 
-    {"name":"vlan1","type":"cnv-bridge","cniVersion":"0.3.1","bridge":"br1","macspoofchk":false,"ipam":{}}
-
-
+    {"name":"br1","type":"cnv-bridge","cniVersion":"0.3.1","bridge":"br1","macspoofchk": true,"vlan": 22}
 ---
 apiVersion: k8s.cni.cncf.io/v1
 kind: NetworkAttachmentDefinition
 metadata:
-  name: vlan23
-  namespace: test-vm
+  name: bridge-network-23
+  namespace: vm-test
+  annotations:
+    k8s.v1.cni.cncf.io/resourceName: bridge.network.kubevirt.io/br1
 spec:
   config: >- 
-    {"name":"vlan23","type":"cnv-bridge","cniVersion":"0.3.1","bridge":"br23","macspoofchk":false,"ipam":{}}
-
-
+    {"name":"br1","type":"cnv-bridge","cniVersion":"0.3.1","bridge":"br1","macspoofchk": true,"vlan": 23}
 ---
 apiVersion: k8s.cni.cncf.io/v1
 kind: NetworkAttachmentDefinition
 metadata:
-  name: vlan24
-  namespace: test-vm
+  name: bridge-network-24
+  namespace: vm-test
+  annotations:
+    k8s.v1.cni.cncf.io/resourceName: bridge.network.kubevirt.io/br1
 spec:
   config: >- 
-    {"name":"vlan24","type":"cnv-bridge","cniVersion":"0.3.1","bridge":"br24","macspoofchk":false,"ipam":{}}
-
-
+    {"name":"br1","type":"cnv-bridge","cniVersion":"0.3.1","bridge":"br1","macspoofchk": true,"vlan": 24}
 ---
 apiVersion: k8s.cni.cncf.io/v1
 kind: NetworkAttachmentDefinition
 metadata:
-  name: vlan1
-  namespace: test-vm
+  name: bridge-network-1
+  namespace: vm-test
+  annotations:
+    k8s.v1.cni.cncf.io/resourceName: bridge.network.kubevirt.io/br1
 spec:
   config: >- 
-    {"name":"vlan1","type":"cnv-bridge","cniVersion":"0.3.1","bridge":"br1","macspoofchk":false,"ipam":{}}
-
-
+    {"name":"br1","type":"cnv-bridge","cniVersion":"0.3.1","bridge":"br1","macspoofchk": true,"vlan": 1}
 ---
 apiVersion: k8s.cni.cncf.io/v1
 kind: NetworkAttachmentDefinition
 metadata:
-  name: vlan3
-  namespace: test-vm
+  name: bridge-network-3
+  namespace: vm-test
+  annotations:
+    k8s.v1.cni.cncf.io/resourceName: bridge.network.kubevirt.io/br1
 spec:
   config: >- 
-    {"name":"vlan3","type":"cnv-bridge","cniVersion":"0.3.1","bridge":"br3","macspoofchk":false,"ipam":{}}
-
-
+    {"name":"br1","type":"cnv-bridge","cniVersion":"0.3.1","bridge":"br1","macspoofchk": true,"vlan": 3}
 ---
 apiVersion: k8s.cni.cncf.io/v1
 kind: NetworkAttachmentDefinition
 metadata:
-  name: vlan6
-  namespace: test-vm
+  name: bridge-network-6
+  namespace: vm-test
+  annotations:
+    k8s.v1.cni.cncf.io/resourceName: bridge.network.kubevirt.io/br1
 spec:
   config: >- 
-    {"name":"vlan6","type":"cnv-bridge","cniVersion":"0.3.1","bridge":"br6","macspoofchk":false,"ipam":{}}
-
-
+    {"name":"br1","type":"cnv-bridge","cniVersion":"0.3.1","bridge":"br1","macspoofchk": true,"vlan": 6}
 ---
 apiVersion: k8s.cni.cncf.io/v1
 kind: NetworkAttachmentDefinition
 metadata:
-  name: vlan99
-  namespace: test-vm
+  name: bridge-network-99
+  namespace: vm-test
+  annotations:
+    k8s.v1.cni.cncf.io/resourceName: bridge.network.kubevirt.io/br1
 spec:
   config: >- 
-    {"name":"vlan99","type":"cnv-bridge","cniVersion":"0.3.1","bridge":"br99","macspoofchk":false,"ipam":{}}
-
-
+    {"name":"br1","type":"cnv-bridge","cniVersion":"0.3.1","bridge":"br1","macspoofchk": true,"vlan": 99}
 ---
 apiVersion: k8s.cni.cncf.io/v1
 kind: NetworkAttachmentDefinition
 metadata:
-  name: vlan100
-  namespace: test-vm
+  name: bridge-network-100
+  namespace: vm-test
+  annotations:
+    k8s.v1.cni.cncf.io/resourceName: bridge.network.kubevirt.io/br1
 spec:
   config: >- 
-    {"name":"vlan100","type":"cnv-bridge","cniVersion":"0.3.1","bridge":"br100","macspoofchk":false,"ipam":{}}
-
-
+    {"name":"br1","type":"cnv-bridge","cniVersion":"0.3.1","bridge":"br1","macspoofchk": true,"vlan": 100}
 ---
 apiVersion: k8s.cni.cncf.io/v1
 kind: NetworkAttachmentDefinition
 metadata:
-  name: vlan4
-  namespace: test-vm
+  name: bridge-network-4
+  namespace: vm-test
+  annotations:
+    k8s.v1.cni.cncf.io/resourceName: bridge.network.kubevirt.io/br1
 spec:
   config: >- 
-    {"name":"vlan4","type":"cnv-bridge","cniVersion":"0.3.1","bridge":"br4","macspoofchk":false,"ipam":{}}
-
-
+    {"name":"br1","type":"cnv-bridge","cniVersion":"0.3.1","bridge":"br1","macspoofchk": true,"vlan": 4}
