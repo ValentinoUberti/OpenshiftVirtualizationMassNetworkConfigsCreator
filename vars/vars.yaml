@@ -1,0 +1,62 @@
+---
+  virtual_machines_namespaces: test-vm
+  interfaces:
+    - name: ovirtmgmt
+      vlan_id: 25
+      description: Management Network
+      base_iface: enp5s0f0
+    - name: vlan19
+      vlan_id: 19
+      description: Pubblica
+      base_iface: enp5s0f0
+    - name: vlan22
+      vlan_id: 22
+      description: Openshift Privata
+      base_iface: enp5s0f0
+    - name: vlan22Test
+      vlan_id: 1
+      description: ""
+      base_iface: enp5s0f0
+    - name: vlan23
+      vlan_id: 23
+      description: Openstack Privata
+      base_iface: enp5s0f0
+    - name: vlan24
+      vlan_id: 24
+      description: iscsi nelle VM and Ceph
+      base_iface: enp5s0f0
+    - name: vlan_1
+      vlan_id: 1
+      description: OCP_HUB
+      base_iface: enp5s0f0
+    - name: vlan_3
+      vlan_id: 3
+      description: ""
+      base_iface: enp5s0f0
+    - name: vlan_6
+      vlan_id: 6
+      description: ""
+      base_iface: enp5s0f0
+    - name: vlan_99
+      vlan_id: 99
+      description: ""
+      base_iface: enp5s0f0
+    - name: vlan_100
+      vlan_id: 100
+      description: ""
+      base_iface: enp5s0f0
+    - name: vlan_k8s_4
+      vlan_id: 4
+      description: ""
+      base_iface: enp5s0f0
+    
+  
+    
+    
+    
+  
+    
+    
+    
+  
+    

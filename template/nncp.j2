@@ -1,0 +1,46 @@
+apiVersion: nmstate.io/v1
+kind: NodeNetworkConfigurationPolicy
+metadata:
+ name: vm-network-bridges
+spec:
+ desiredState:
+   interfaces:
+     {%- for interface in interfaces %} 
+     - type: vlan
+       description: {{ interface.description }}
+       name: {{ interface.name }}
+       state: up
+       vlan:
+         base-iface: {{ interface.base_iface}}
+         id: {{ interface.vlan_id }}
+     - type: linux-bridge
+       name: br{{ interface.vlan_id }}
+       state: up
+       description: Linux bridge with {{ interface.base_iface }}.{{ interface.vlan_id }} as a port
+       bridge:
+         options:
+           stp:
+             enabled: false
+         port:
+           - name: "{{ interface.base_iface }}.{{ interface.vlan_id }}"
+
+       
+     {%- endfor %}
+
+{# NAD #}
+
+{%- for interface in interfaces %}
+{%- set bridge_name = "br" ~ interface.vlan_id %}
+{%- set vlan_name = "vlan" ~ interface.vlan_id %}
+---
+apiVersion: k8s.cni.cncf.io/v1
+kind: NetworkAttachmentDefinition
+metadata:
+  name: vlan{{ interface.vlan_id }}
+  namespace: {{ virtual_machines_namespaces }}
+spec:
+  config: >- 
+    {"name":"{{ vlan_name }}","type":"cnv-bridge","cniVersion":"0.3.1","bridge":"{{ bridge_name }}","macspoofchk":false,"ipam":{}}
+
+
+{% endfor %}
