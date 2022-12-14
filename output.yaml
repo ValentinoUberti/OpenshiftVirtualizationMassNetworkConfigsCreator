@@ -23,7 +23,7 @@ apiVersion: k8s.cni.cncf.io/v1
 kind: NetworkAttachmentDefinition
 metadata:
   name: bridge-network-25
-  namespace: vm-test
+  namespace: vm-import
   annotations:
     k8s.v1.cni.cncf.io/resourceName: bridge.network.kubevirt.io/br1
 spec:
@@ -34,7 +34,7 @@ apiVersion: k8s.cni.cncf.io/v1
 kind: NetworkAttachmentDefinition
 metadata:
   name: bridge-network-19
-  namespace: vm-test
+  namespace: vm-import
   annotations:
     k8s.v1.cni.cncf.io/resourceName: bridge.network.kubevirt.io/br1
 spec:
@@ -45,7 +45,7 @@ apiVersion: k8s.cni.cncf.io/v1
 kind: NetworkAttachmentDefinition
 metadata:
   name: bridge-network-22
-  namespace: vm-test
+  namespace: vm-import
   annotations:
     k8s.v1.cni.cncf.io/resourceName: bridge.network.kubevirt.io/br1
 spec:
@@ -56,7 +56,7 @@ apiVersion: k8s.cni.cncf.io/v1
 kind: NetworkAttachmentDefinition
 metadata:
   name: bridge-network-23
-  namespace: vm-test
+  namespace: vm-import
   annotations:
     k8s.v1.cni.cncf.io/resourceName: bridge.network.kubevirt.io/br1
 spec:
@@ -67,7 +67,7 @@ apiVersion: k8s.cni.cncf.io/v1
 kind: NetworkAttachmentDefinition
 metadata:
   name: bridge-network-24
-  namespace: vm-test
+  namespace: vm-import
   annotations:
     k8s.v1.cni.cncf.io/resourceName: bridge.network.kubevirt.io/br1
 spec:
@@ -78,7 +78,7 @@ apiVersion: k8s.cni.cncf.io/v1
 kind: NetworkAttachmentDefinition
 metadata:
   name: bridge-network-1
-  namespace: vm-test
+  namespace: vm-import
   annotations:
     k8s.v1.cni.cncf.io/resourceName: bridge.network.kubevirt.io/br1
 spec:
@@ -89,7 +89,7 @@ apiVersion: k8s.cni.cncf.io/v1
 kind: NetworkAttachmentDefinition
 metadata:
   name: bridge-network-3
-  namespace: vm-test
+  namespace: vm-import
   annotations:
     k8s.v1.cni.cncf.io/resourceName: bridge.network.kubevirt.io/br1
 spec:
@@ -100,7 +100,7 @@ apiVersion: k8s.cni.cncf.io/v1
 kind: NetworkAttachmentDefinition
 metadata:
   name: bridge-network-6
-  namespace: vm-test
+  namespace: vm-import
   annotations:
     k8s.v1.cni.cncf.io/resourceName: bridge.network.kubevirt.io/br1
 spec:
@@ -111,7 +111,7 @@ apiVersion: k8s.cni.cncf.io/v1
 kind: NetworkAttachmentDefinition
 metadata:
   name: bridge-network-99
-  namespace: vm-test
+  namespace: vm-import
   annotations:
     k8s.v1.cni.cncf.io/resourceName: bridge.network.kubevirt.io/br1
 spec:
@@ -122,7 +122,7 @@ apiVersion: k8s.cni.cncf.io/v1
 kind: NetworkAttachmentDefinition
 metadata:
   name: bridge-network-100
-  namespace: vm-test
+  namespace: vm-import
   annotations:
     k8s.v1.cni.cncf.io/resourceName: bridge.network.kubevirt.io/br1
 spec:
@@ -133,7 +133,7 @@ apiVersion: k8s.cni.cncf.io/v1
 kind: NetworkAttachmentDefinition
 metadata:
   name: bridge-network-4
-  namespace: vm-test
+  namespace: vm-import
   annotations:
     k8s.v1.cni.cncf.io/resourceName: bridge.network.kubevirt.io/br1
 spec:

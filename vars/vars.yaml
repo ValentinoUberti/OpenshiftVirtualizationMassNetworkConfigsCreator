@@ -1,5 +1,5 @@
 ---
-  virtual_machines_namespaces: vm-test
+  virtual_machines_namespaces: vm-import
   interfaces:
     - name: ovirtmgmt
       vlan_id: 25
